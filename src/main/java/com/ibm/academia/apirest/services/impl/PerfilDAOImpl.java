@@ -2,6 +2,7 @@ package com.ibm.academia.apirest.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.academia.apirest.models.entities.Perfil;
 import com.ibm.academia.apirest.repository.PerfilRepository;
@@ -13,7 +14,8 @@ public class PerfilDAOImpl extends GenericoDAOImpl<Perfil, PerfilRepository > im
 	@Autowired
 	private PerfilRepository perfilRepositorio;
 	
-	
+	@Override
+	@Transactional
 	public Perfil guardar(Perfil perfil) {
 	
 		return perfilRepositorio.save(perfil);

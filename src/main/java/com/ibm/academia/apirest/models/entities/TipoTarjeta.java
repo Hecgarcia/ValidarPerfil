@@ -2,7 +2,6 @@ package com.ibm.academia.apirest.models.entities;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -66,10 +65,10 @@ public class TipoTarjeta implements Serializable {
 			joinColumns = @JoinColumn(name = "tipo_tarjetas_id"),
 			inverseJoinColumns = @JoinColumn(name = "perfil_id")
 			)
-	@JsonIgnoreProperties({"tipo_tarjwtas"})
+	@JsonIgnoreProperties({"tipo_tarjetas"})
 	private Set<Perfil> perfil;
 	
-	public TipoTarjeta(Integer id, String nombre, BigDecimal rangoMinimo, BigDecimal rangoMaximo, Set<Perfil> perfil) {
+	public TipoTarjeta(Integer id, String nombre, Set<Perfil> perfil) {
 		
 		this.id = id;
 		this.nombre = nombre;
