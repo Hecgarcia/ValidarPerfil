@@ -1,9 +1,11 @@
-package com.ibm.academia.apirest.services;
+package com.ibm.academia.apirest.services.impl;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.ibm.academia.apirest.services.GenericoDAO;
 
 public class GenericoDAOImpl <E, R extends CrudRepository<E, Integer>> implements GenericoDAO<E> {
 

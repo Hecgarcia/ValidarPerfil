@@ -1,4 +1,4 @@
-package com.ibm.academia.apirest.entities;
+package com.ibm.academia.apirest.models.entities;
 
 
 import java.math.BigDecimal;
@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ibm.academia.apirest.enums.Estatus;
 
 import lombok.Getter;
@@ -41,10 +42,11 @@ public class Cliente extends Persona {
 	private BigDecimal sueldo;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "cliente_perfiles",
+	@JoinTable(name = "cliente_perfiles", schema = "validar_perfil",
 			   joinColumns = @JoinColumn(name = "cliente_id"),
 			   inverseJoinColumns = @JoinColumn(name = "perfil_id")
 	)
+	@JsonIgnoreProperties({"clientes"})
 	private Set<Perfil> perfil;
 
 	@Column(name = "estatus")
