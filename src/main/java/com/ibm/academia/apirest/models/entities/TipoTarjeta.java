@@ -19,6 +19,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -42,6 +45,9 @@ public class TipoTarjeta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull(message = "No puede ser nulo")
+	@NotEmpty(message = "no puede ser vacio")
+	@Size(min = 4, max = 60)
 	@Column(name = "nombre")
 	private String nombre;
 	
