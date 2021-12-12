@@ -62,7 +62,7 @@ public class TipoTarjeta implements Serializable {
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "tipo_tarjeta_perfiles",schema = "validar_perfil",
-			joinColumns = @JoinColumn(name = "tipo_tarjetas_id"),
+			joinColumns = @JoinColumn(name = "tipo_tarjeta_id"),
 			inverseJoinColumns = @JoinColumn(name = "perfil_id")
 			)
 	@JsonIgnoreProperties({"tipo_tarjetas"})
