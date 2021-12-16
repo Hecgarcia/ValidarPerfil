@@ -41,4 +41,9 @@ public class TipoTarjetaDAOImpl extends GenericoDAOImpl<TipoTarjeta, TipoTarjeta
 		
 		return repository.findAll();
 	}
+	
+	void validacion () {
+		
+		
+	}
 }

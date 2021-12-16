@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.academia.apirest.exceptions.BadRequestException;
-
+import com.ibm.academia.apirest.exceptions.NotFoundException;
+import com.ibm.academia.apirest.mapper.TipoTarjetaMapper;
+import com.ibm.academia.apirest.models.dto.TipoTarjetaDTO;
 import com.ibm.academia.apirest.models.entities.TipoTarjeta;
 import com.ibm.academia.apirest.services.TipoTarjetaDAO;
 
@@ -42,9 +44,9 @@ public class TipoTarjetaController {
 	  */
 	 @GetMapping("/id/tarjeta")
 		public TipoTarjeta  buscartarjetaPorPerfil(
-				@RequestParam (value = "pasion") String pasion,
-				@RequestParam (value = "salario") BigDecimal salario,
-				@RequestParam (value =  "edad") Integer edad,
+				@RequestParam String pasion,
+				@RequestParam BigDecimal salario,
+				@RequestParam Integer edad,
 				@RequestParam (value = "tarjetaId") Integer tarjetaId
 				
 				) {
@@ -56,8 +58,23 @@ public class TipoTarjetaController {
 			return tarjeta;
 			
 		} 
-	
-	   
+	 
+	 
+	      @GetMapping("/dto/tarjetas")  
+	      public ResponseEntity<?> listaTarjetasDTO() {
+	    	  List<TipoTarjeta> tipoTarjeta = (List<TipoTarjeta>) tipoTarjetaDao.buscarTodos();
+	    	  
+	    	  if(tipoTarjeta.isEmpty())
+	    		  throw new NotFoundException("No existen tarjetas en ala BD");
+	    	  
+	    	  List<TipoTarjetaDTO> listaTarjetas = tipoTarjeta.stream()
+	    			  .map(TipoTarjetaMapper::mapTarjeta).collect(Collectors.toList());
+	    	  
+	    	  return new ResponseEntity<List<TipoTarjetaDTO>>(listaTarjetas, HttpStatus.OK);
+	      }
+	 
+	 
+	 	   
 	   /**
 	    * EndPoint para obtener las tarjetas
 	    * @return lista de tarjetas
