@@ -23,8 +23,8 @@ public class ValidarPerfilRestException {
 	}
 	
 	@ExceptionHandler(value = NotFoundException.class)
-	public ResponseEntity<?> noExisteException(NotFoundException exception)
-	{
+	public ResponseEntity<?> noExisteException(NotFoundException exception)	{
+		
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 		respuesta.put("error", exception.getMessage());
 		return new ResponseEntity<>(respuesta, HttpStatus.NOT_FOUND);

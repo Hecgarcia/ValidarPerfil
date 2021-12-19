@@ -2,7 +2,8 @@ package com.ibm.academia.apirest.repositories;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
+
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,43 +26,18 @@ public class PasionTarjetaRepositoryTest {
 	void setUp() {
 		
 		//given
-		Iterable<PasionTarjeta> tarjetas = tarjetaRepository.saveAll(
-                Arrays.asList(
-                		
-                		/*DatosDummy.tarjeta01(),
-                		DatosDummy.tarjeta02(),
-                		DatosDummy.tarjeta03(),
-                		DatosDummy.tarjeta04(),
-                		DatosDummy.tarjeta05(),
-                		DatosDummy.tarjeta06(),
-                		DatosDummy.tarjeta07(),
-                		DatosDummy.tarjeta08(),
-                		DatosDummy.tarjeta09(),
-                		DatosDummy.tarjeta10(),
-                		DatosDummy.tarjeta11(),
-                		DatosDummy.tarjeta12(),
-                		DatosDummy.tarjeta13(),
-                		DatosDummy.tarjeta14(),
-                		DatosDummy.tarjeta15(),
-                		DatosDummy.tarjeta16(),
-                		DatosDummy.tarjeta17(),
-                		DatosDummy.tarjeta18(),
-                		DatosDummy.tarjeta19(),
-                		DatosDummy.tarjeta20(),
-                		DatosDummy.tarjeta21(),
-                		DatosDummy.tarjeta22(),
-                		DatosDummy.tarjeta23(),
-                		DatosDummy.tarjeta24(),
-                		DatosDummy.tarjeta25(),
-                		DatosDummy.tarjeta26(),
-                		DatosDummy.tarjeta27(),
-                		DatosDummy.tarjeta28(),
-                		DatosDummy.tarjeta29(),
-                		DatosDummy.tarjeta30(),
-                		DatosDummy.tarjeta31()
-                		*/
-                		));
 		
+		tarjetaRepository.save(DatosDummy.tarjeta01());
+		tarjetaRepository.save(DatosDummy.tarjeta02());
+		tarjetaRepository.save(DatosDummy.tarjeta03());
+		tarjetaRepository.save(DatosDummy.tarjeta04());
+		tarjetaRepository.save(DatosDummy.tarjeta05());
+		tarjetaRepository.save(DatosDummy.tarjeta06());
+		tarjetaRepository.save(DatosDummy.tarjeta07());
+		tarjetaRepository.save(DatosDummy.tarjeta08());
+		tarjetaRepository.save(DatosDummy.tarjeta09());
+		tarjetaRepository.save(DatosDummy.tarjeta10());
+			
 	}
 	
 	@AfterEach
@@ -71,16 +47,17 @@ public class PasionTarjetaRepositoryTest {
 	
 	@Test
 	@DisplayName("Test: Busca Tarjeta")
-	void buscarCreditoPorPasionAndSalarioAndEdad	(){
+	void findByPasionSueldoEdadTarjeta() {
 		
 		//When
-		String pasion = "Travels";
-		Integer salario =12500;
-		Integer edad = 21;
-		PasionTarjeta expected = tarjetaRepository.findByPasionSueldoEdad(pasion, salario, edad);
+		String nombrePasion = "Shopping";
+		Integer sueldo =1000;
+		Integer edad = 25;
+		
+		List<PasionTarjeta> expected = (List<PasionTarjeta>)tarjetaRepository.findByPasionSueldoEdadTarjeta(nombrePasion, sueldo, edad);
 		
 		//Then
-		assertThat(expected).isEqualTo(DatosDummy.tarjeta30());
+		assertThat(expected.size()).isEqualTo(1);
 	}
 	
 	

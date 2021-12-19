@@ -2,16 +2,16 @@ package com.ibm.academia.apirest.models.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -19,15 +19,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
 @Entity
@@ -49,12 +49,6 @@ public class Perfil implements Serializable {
 	
 	@Column(name = "fecha_modificacion")
 	private Date fechaModificacion;
-	
-	@ManyToMany(mappedBy = "perfil", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"perfiles"})
-	private Set<Cliente> cliente;
-	
-	
 	
 	public Perfil(Integer id, String nombre) {
 		
